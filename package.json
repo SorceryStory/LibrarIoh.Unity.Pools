@@ -1,0 +1,22 @@
+{
+  "name": "com.sorceressspell.librarioh.unity.pools",
+  "displayName": "LibrarIoh.Unity.Pools",
+  "version": "0.1.0",
+  "type": "library",
+  "unity": "2018.1",
+  "description": "LibrarIoh.Unity.Pools (https://github.com/SorceressSpell/LibrarIoh.Unity.Pools)\n\nLibrarIoh's Pool of GameObjects for Unity.\n\nDepends on:\n  - LibrarIoh.Collections (https://github.com/SorceressSpell/LibrarIoh.Collections)\n  - LibrarIoh.Core (https://github.com/SorceressSpell/LibrarIoh.Core)",
+  "dependencies": {
+    "com.sorceressspell.librarioh.collections": "0.2.0",
+    "com.sorceressspell.librarioh.core": "0.3.0"
+  },
+  "author": {
+    "name": "Sorceress' Spell",
+    "email": "Sorceress.Spell@gmail.com",
+    "url": "http://SorceressSpell.com"
+  },
+  "keywords": [
+    "librarioh",
+    "unity",
+    "pools"
+  ]
+}
