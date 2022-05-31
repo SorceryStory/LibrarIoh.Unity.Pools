@@ -16,28 +16,29 @@ namespace SorceressSpell.LibrarIoh.Unity.Pools
         {
             None = 0,
             AudioClip = 1 << 0,
-            OutputAudioMixerGroup = 1 << 1,
-            Mute = 1 << 2,
-            BypassEffects = 1 << 3,
-            BypassListenerEffects = 1 << 4,
-            BypassReverbZones = 1 << 5,
-            PlayOnAwake = 1 << 6,
-            Loop = 1 << 7,
-            Priority = 1 << 8,
-            Volume = 1 << 9,
-            Pitch = 1 << 10,
-            StereoPan = 1 << 11,
-            SpatialBlend = 1 << 12,
-            ReverbZoneMix = 1 << 13,
-            DopplerLevel = 1 << 14,
-            Spread = 1 << 15,
-            VolumeRolloff = 1 << 16,
-            MinDistance = 1 << 17,
-            MaxDistance = 1 << 18,
-            VolumeCurve = 1 << 19,
-            SpatialBlendCurve = 1 << 20,
-            SpreadCurve = 1 << 21,
-            ReverbZoneMixCurve = 1 << 22,
+            StartingTime = 1 << 1,
+            OutputAudioMixerGroup = 1 << 2,
+            Mute = 1 << 3,
+            BypassEffects = 1 << 4,
+            BypassListenerEffects = 1 << 5,
+            BypassReverbZones = 1 << 6,
+            PlayOnAwake = 1 << 7,
+            Loop = 1 << 8,
+            Priority = 1 << 9,
+            Volume = 1 << 10,
+            Pitch = 1 << 11,
+            StereoPan = 1 << 12,
+            SpatialBlend = 1 << 13,
+            ReverbZoneMix = 1 << 14,
+            DopplerLevel = 1 << 15,
+            Spread = 1 << 16,
+            VolumeRolloff = 1 << 17,
+            MinDistance = 1 << 18,
+            MaxDistance = 1 << 19,
+            VolumeCurve = 1 << 20,
+            SpatialBlendCurve = 1 << 21,
+            SpreadCurve = 1 << 22,
+            ReverbZoneMixCurve = 1 << 23,
         }
 
         #endregion Enums
@@ -64,6 +65,7 @@ namespace SorceressSpell.LibrarIoh.Unity.Pools
         private AnimationCurve _spatialBlendCurve;
         private float _spread;
         private AnimationCurve _spreadCurve;
+        private float _startingTime;
         private float _stereoPan;
         private float _volume;
         private AnimationCurve _volumeCurve;
@@ -328,6 +330,19 @@ namespace SorceressSpell.LibrarIoh.Unity.Pools
             }
         }
 
+        public float StartingTime
+        {
+            set
+            {
+                _startingTime = value;
+                _changes |= Properties.StartingTime;
+            }
+            get
+            {
+                return _startingTime;
+            }
+        }
+
         public float StereoPan
         {
             set
@@ -380,12 +395,9 @@ namespace SorceressSpell.LibrarIoh.Unity.Pools
             }
         }
 
-        public void ResetChanges()
-        {
-            _changes = Properties.None;
-        }
-
         #endregion Properties
+
+        #region Constructors
 
         public AudioSourceProperties()
         {
@@ -417,6 +429,8 @@ namespace SorceressSpell.LibrarIoh.Unity.Pools
             _reverbZoneMixCurve = null;
         }
 
+        #endregion Constructors
+
         #region Methods
 
         public override void ApplyTo(GameObject gameObject)
@@ -427,6 +441,7 @@ namespace SorceressSpell.LibrarIoh.Unity.Pools
         public void ApplyTo(AudioSource component)
         {
             if (Changes.IsAnyOf(Properties.AudioClip)) { component.clip = _audioClip; }
+            if (Changes.IsAnyOf(Properties.StartingTime)) { component.time = _startingTime; }
             if (Changes.IsAnyOf(Properties.OutputAudioMixerGroup)) { component.outputAudioMixerGroup = _outputAudioMixerGroup; }
             if (Changes.IsAnyOf(Properties.Mute)) { component.mute = _mute; }
             if (Changes.IsAnyOf(Properties.BypassEffects)) { component.bypassEffects = _bypassEffects; }
@@ -465,6 +480,7 @@ namespace SorceressSpell.LibrarIoh.Unity.Pools
             _changes = original._changes;
 
             _audioClip = original._audioClip;
+            _startingTime = original._startingTime;
             _outputAudioMixerGroup = original._outputAudioMixerGroup;
             _mute = original._mute;
             _bypassEffects = original._bypassEffects;
@@ -487,6 +503,11 @@ namespace SorceressSpell.LibrarIoh.Unity.Pools
             _spatialBlendCurve = original._spatialBlendCurve;
             _spreadCurve = original._spreadCurve;
             _reverbZoneMixCurve = original._reverbZoneMixCurve;
+        }
+
+        public void ResetChanges()
+        {
+            _changes = Properties.None;
         }
 
         #endregion Methods
