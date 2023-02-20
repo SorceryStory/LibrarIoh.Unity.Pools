@@ -6,7 +6,7 @@
   "unity": "2018.1",
   "description": "LibrarIoh.Unity.Pools (https://github.com/SorceryStory/LibrarIoh.Unity.Pools)\n\nLibrarIoh's Pool of GameObjects for Unity.\n\nDepends on:\n  - LibrarIoh.Collections (https://github.com/SorceryStory/LibrarIoh.Collections)\n  - LibrarIoh.Core (https://github.com/SorceryStory/LibrarIoh.Core)",
   "dependencies": {
-    "com.sorceressspell.librarioh.collections": "0.3.0",
+    "com.sorceressspell.librarioh.collections": "0.3.1",
     "com.sorceressspell.librarioh.core": "0.3.0"
   },
   "author": {
