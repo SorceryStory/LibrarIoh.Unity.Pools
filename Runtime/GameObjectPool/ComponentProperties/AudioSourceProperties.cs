@@ -4,7 +4,6 @@ using System;
 using UnityEngine;
 using UnityEngine.Audio;
 
-
 namespace SorceressSpell.LibrarIoh.Unity.Pools
 {
     public class AudioSourceProperties : ComponentProperties, IPoolObjectProperties<AudioSource>, IPoolObjectProperties<BehaviourPoolAudioSource>, ICopyFrom<AudioSourceProperties>
